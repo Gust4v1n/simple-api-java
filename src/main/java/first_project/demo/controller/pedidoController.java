@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/pedido")
 @Slf4j
 public class pedidoController {
-    private static final Logger log = LoggerFactory.getLogger(pedidoController.class);
     @Autowired
     private pedidoService pedidoService;
     @GetMapping
@@ -27,16 +26,19 @@ public class pedidoController {
 
     @GetMapping("/{nome}")
     public List<pedidoDto> exibirProdutosExpecificoController(@PathVariable String nome,  pedidoDto dto){
+        log.info("Exibindo o produto " + nome);
         return pedidoService.exibirProdutoExpecificoService(nome ,dto);
     }
 
     @DeleteMapping
     public List<pedidoDto> deletarProdutos(pedidoDto dto){
+        log.info("produto deletado");
         return pedidoService.deletarProdutos(dto);
     }
 
     @PostMapping
     public pedidoDto adicionarProdutosController(@RequestBody pedidoDto dto){
+        log.info("produto adicionado");
         return pedidoService.adicionarProdutosService(dto);
     }
 }

@@ -4,6 +4,7 @@ import first_project.demo.controller.dto.pedidoDto;
 import first_project.demo.exeption.badRequest;
 import first_project.demo.exeption.unprocessableEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class pedidoService {
     private List<pedidoDto> pedidoDtos = new ArrayList<>();
 
@@ -31,14 +33,17 @@ public class pedidoService {
 
     public pedidoDto adicionarProdutosService(@RequestBody pedidoDto dto){
         if(dto.valor() == null || dto.descricao() == null){
+            log.error("valor ou descricao nao definido");
             throw  new badRequest("Valor ou Descricao nao definido");
         }
 
         if(dto.valor()<=0){
+            log.error("valor menor ou igual a zero");
             throw new unprocessableEntity("Valor menor que 0, isso nao e permitido");
         }
 
         if(dto.dataHora().isAfter(OffsetDateTime.now())){
+            log.error("operacao post no futuro");
             throw new unprocessableEntity("Operacao no futuro, isso nao e permitido seu viajante do tempo");
         }
         pedidoDtos.add(dto);

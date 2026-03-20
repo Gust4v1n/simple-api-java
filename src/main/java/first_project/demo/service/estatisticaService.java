@@ -15,16 +15,9 @@ import java.util.stream.Collectors;
 public class estatisticaService {
     public estatisticaDto exibirEstatistica(List<pedidoDto> pedidos){
 
-        DoubleSummaryStatistics stats = pedidos.stream()
-            .mapToDouble(p -> p.valor())
-            .summaryStatistics();
+        DoubleSummaryStatistics stats = pedidos.stream().mapToDouble(p -> p.valor()).summaryStatistics();
 
-        return new estatisticaDto(
-                stats.getCount(),
-                stats.getSum(),
-                stats.getAverage(),
-                stats.getMin(),
-                stats.getMax()
+        return new estatisticaDto(stats.getCount(), stats.getSum(), stats.getAverage(), stats.getMin(), stats.getMax()
         );
     }
 }
