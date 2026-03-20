@@ -1,4 +1,4 @@
-pedi para IA modificar o desafio backend Itaú e deu isso:
+pedi para IA modificar o desafio backend Itaú para eu tentar fazer:
 
 🧩 Desafio Backend Simplificado – “Controle de Pedidos”
 1. Introdução
